@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import ThemeContext from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 const Blog = () => {
 
-    const { theme , toggleTheme } = useContext(ThemeContext)
+    const { theme , toggleTheme } = useTheme()
 
     const style = {
         background: theme === 'dark' ? '#333' : '#EEE',

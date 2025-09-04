@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Blog from './pages/Blog'
 import Navbar from './components/Navbar'
-import ThemeContext from './context/ThemeContext'
+import {ThemeContextProvider} from './context/ThemeContext'
 
 function App() {
 
@@ -15,9 +15,14 @@ function App() {
     setTheme(curTheme => (curTheme == 'light' ? 'dark' : 'light'))
   }
 
+  //actual change in theme
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
 
-    <ThemeContext.Provider value={{theme , toggleTheme}}>
+    <ThemeContextProvider value={{theme , toggleTheme}}>
 
       <BrowserRouter>
 
@@ -30,7 +35,7 @@ function App() {
 
       </BrowserRouter>
 
-    </ThemeContext.Provider>
+    </ThemeContextProvider>
   )
 }
 
